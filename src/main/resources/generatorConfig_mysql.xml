@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+       <plugin type="com.xuxl.mybatis.plugin.IgnoreColumnsPlugin">
+	        <property name="columns" value="id,status,creator,createTime,modifier,modifyTime,version"/>
+	        <property name="primaryKeyClass" value="java.lang.Long"/>
+        </plugin>
+        
+         <plugin type="com.xuxl.mybatis.plugin.ServiceGeneratorPlugin">
+             <property name="target" value="src/main/java/" />
+             <property name="packageName" value="com.xuxl.mybatis.service" />
+             <property name="superInterface" value="com.xuxl.mybatis.service.common.CommonService" />
+             <property name="superClass" value="com.xuxl.mybatis.service.common.AbstractCommonServiceImpl" />
+             <property name="primaryKeyClass" value="java.lang.Long" />
+         </plugin>
+        
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin">
+	        <property name="useToStringFromRoot" value="true"/>
+        </plugin>
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+            <property name="searchString" value="Example$" />
+            <property name="replaceString" value="Criteria" />
+        </plugin>
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/order" userId="ulife" password="">
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.xuxl.mybatis.entities" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.xuxl.mybatis.mapper"  targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.xuxl.mybatis.mapper"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <table tableName="refund_requisition" domainObjectName="RefundRequisition">
+        	<generatedKey column="id" sqlStatement="JDBC" identity="true" />
+        </table>
+        <table tableName="refund_requisition_detail" domainObjectName="RefundRequisitionDetail">
+        	<generatedKey column="id" sqlStatement="JDBC" identity="true" />
+        </table>
+    </context>
+</generatorConfiguration>
