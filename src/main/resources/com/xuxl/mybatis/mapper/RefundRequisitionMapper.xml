@@ -84,7 +84,7 @@
     customer_login_name, create_time, modify_time, creator, creator_name, modifier, refund_no, 
     refund_create_time, refund_modify_time, remarks, version
   </sql>
-  <select id="selectByExample" parameterType="com.xuxl.mybatis.entities.RefundRequisitionCriteria" resultMap="BaseResultMap">
+  <select id="selectByExample" fetchSize="-2147483648" parameterType="com.xuxl.mybatis.entities.RefundRequisitionCriteria" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -404,18 +404,4 @@
       version = #{version,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectByExampleWithRowbounds" parameterType="com.xuxl.mybatis.entities.RefundRequisitionCriteria" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from refund_requisition
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
 </mapper>

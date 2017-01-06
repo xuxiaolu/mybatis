@@ -3,11 +3,11 @@ package com.xuxl.mybatis.service.common;
 import java.io.Serializable;
 import java.util.List;
 
-import org.apache.ibatis.session.RowBounds;
-
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xuxl.mybatis.entities.common.AbstractCriteria;
-import com.xuxl.mybatis.entities.common.BaseEntity;
 import com.xuxl.mybatis.entities.common.AbstractCriteria.Criteria;
+import com.xuxl.mybatis.entities.common.BaseEntity;
 import com.xuxl.mybatis.mapper.common.Mapper;
 
 
@@ -54,8 +54,10 @@ public abstract class AbstractCommonServiceImpl<D extends Mapper<T, A, PK>, T ex
         return getMapper().selectByExample(criteria);
     }
 
-    public List<T> list(A criteria, RowBounds rowBounds) {
-        return getMapper().selectByExampleWithRowbounds(criteria, rowBounds);
+    public PageInfo<T> page(A criteria,int pageNum,int pageSize) {
+    	PageHelper.startPage(pageNum, pageSize);
+        List<T> list = getMapper().selectByExample(criteria);
+        return new PageInfo<>(list);
     }
 
     public T get(PK id) {

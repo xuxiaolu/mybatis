@@ -3,29 +3,28 @@ package com.xuxl.mybatis.service.common;
 import java.io.Serializable;
 import java.util.List;
 
-import org.apache.ibatis.session.RowBounds;
-
+import com.github.pagehelper.PageInfo;
 import com.xuxl.mybatis.entities.common.AbstractCriteria;
 import com.xuxl.mybatis.entities.common.BaseEntity;
 
 
 public interface CommonService<T extends BaseEntity<PK>,A extends AbstractCriteria,PK extends Serializable> {
 
-    int insert(T entity);
+	public int insert(T entity);
 
-    int insertSelective(T entity);
+    public int insertSelective(T entity);
 
-    PK count(A criteria);
+    public PK count(A criteria);
 
-    int deleteAll(A example);
+    public int deleteAll(A example);
 
-    int delete(PK id);
+    public int delete(PK id);
 
-    List<T> list(A criteria);
+    public List<T> list(A criteria);
 
-    List<T> list(A criteria,RowBounds rowBounds);
+    public PageInfo<T> page(A criteria,int pageNum,int pageSize);
 
-    T get(PK id);
+    public T get(PK id);
 
     public int updateByExampleSelective(T entity, A criteria);
 
@@ -34,6 +33,5 @@ public interface CommonService<T extends BaseEntity<PK>,A extends AbstractCriter
     public int updateByPrimaryKeySelective(T entity);
 
     public int updateByPrimaryKey(T entity);
-    
     
 }

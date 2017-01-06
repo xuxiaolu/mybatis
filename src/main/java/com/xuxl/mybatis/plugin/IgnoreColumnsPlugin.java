@@ -128,9 +128,9 @@ public class IgnoreColumnsPlugin extends PluginAdapter {
 			initMethod.addBodyLine("super();");
 			introspectedTable.getAllColumns().stream().forEach(table -> {
 				initMethod.addBodyLine(
-						String.format("propertyMap.put(\"%s\",new ColumnType(\"%s\",%s.class));",
+						String.format("propertyMap.put(\"%s\",new ColumnType(\"%s\",%s.class));    //%s",
 								table.getJavaProperty(), table.getActualColumnName(),
-								table.getFullyQualifiedJavaType().getShortName()));
+								table.getFullyQualifiedJavaType().getShortName(),table.getRemarks()));
 				importTypeSet.add(table.getFullyQualifiedJavaType());
 			});
 		}

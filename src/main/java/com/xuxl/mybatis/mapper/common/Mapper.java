@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.session.RowBounds;
 
 import com.xuxl.mybatis.entities.common.AbstractCriteria;
 import com.xuxl.mybatis.entities.common.BaseEntity;
@@ -21,8 +20,6 @@ public interface Mapper<T extends BaseEntity<PK>,A extends AbstractCriteria,PK e
     int insert(T record);
 
     int insertSelective(T record);
-
-    List<T> selectByExampleWithRowbounds(A example, RowBounds rowBounds);
 
     List<T> selectByExample(A example);
 
